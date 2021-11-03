@@ -7,16 +7,17 @@ namespace ProducerConsumerOne
     //this code produce up to 5 items and consume while posible
     class Program
     {
-        private static int _itemsHolder;
+        static Queue<int> _itemsHolder = new Queue<int>();
         static int item = 0;
+        static object _lock = new object();
         static Random _random = new Random();
 
-        static void Main(string[] args)
+        static void Main()
         {
             Program pg = new Program();
 
-            Thread producer = new Thread(new ThreadStart(pg.Producer));
-            Thread consumer = new Thread(new ThreadStart(pg.Consumer));
+            Thread producer = new Thread(pg.Producer);
+            Thread consumer = new Thread(pg.Consumer);
             
             producer.Start();
             consumer.Start();
@@ -25,32 +26,53 @@ namespace ProducerConsumerOne
         {
             while (true)
             {
-                if (_itemsHolder < 5)
+                Monitor.Enter(_lock);
+                try
                 {
-                    _itemsHolder ++;
-                    Console.WriteLine(_itemsHolder + " producer");
+                    if (_itemsHolder.Count < 5)
+                    {
+                        _itemsHolder.Enqueue(item);
+                        Console.WriteLine(_itemsHolder.Count + " producer");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Producer is wating");
+                    }
+
+                    Thread.Sleep(_random.Next(200, 1000));
                 }
-                else
+                finally
                 {
-                    Console.WriteLine("Producer is wating");
+                    Monitor.Exit(_lock);
                 }
-                Thread.Sleep(_random.Next(200, 1000));
             }
         }
+
         public void Consumer()
         {
             while (true)
             {
-                if (_itemsHolder > 0)
+                Monitor.Enter(_lock);
+                try
                 {
-                    _itemsHolder --;
-                    Console.WriteLine(_itemsHolder + " consumer");
+                    {
+                        if (_itemsHolder.Count > 0)
+                        {
+                            _itemsHolder.Dequeue();
+                            Console.WriteLine(_itemsHolder.Count + " consumer");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Consumer is wating");
+                        }
+                    }
+
+                    Thread.Sleep(_random.Next(200, 1000));
                 }
-                else
+                finally
                 {
-                    Console.WriteLine("Consumer is wating");
+                    Monitor.Exit(_lock);
                 }
-                Thread.Sleep(_random.Next(200, 1000));
             }
         }
     }

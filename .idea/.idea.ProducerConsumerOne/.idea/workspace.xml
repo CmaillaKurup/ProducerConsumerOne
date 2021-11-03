@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1c8eeca-b15f-43fc-a148-80f61793593f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProducerConsumerOne/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProducerConsumerOne/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProducerConsumerOne/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProducerConsumerOne/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +61,16 @@
       <updated>1635855143632</updated>
       <workItem from="1635855157845" duration="623000" />
       <workItem from="1635855919868" duration="210000" />
+      <workItem from="1635856235849" duration="5098000" />
     </task>
+    <task id="LOCAL-00001" summary="produce up to 5 items and consume while posible">
+      <created>1635856448838</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635856448838</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
@@ -79,5 +89,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="produce up to 5 items and consume while posible" />
+    <option name="LAST_COMMIT_MESSAGE" value="produce up to 5 items and consume while posible" />
   </component>
 </project>
